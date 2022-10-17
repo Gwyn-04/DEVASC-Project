@@ -36,14 +36,28 @@ def output():
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             output5 = tk.Label(master=outframe1,  text=(each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"), width=200).pack()
         outframe1.pack()
-    
+    elif json_status == 402:
+        error1 = tk.Label(master=outframe1,  text='API Status: ' + str(json_status) + '; Invalid user inputs for one or both locations.', width=200)
+        error1.pack()
+        outframe1.pack()
+    elif json_status == 611:
+        error2 = tk.Label(master=outframe1,  text='API Status: ' + str(json_status) + '; Missing an entry for one or both locations.', width=200)
+        error2.pack()
+        outframe1.pack()
+    else:
+        error3 = tk.Label(master=outframe1,  text='For status code: ' + str(json_status) + '; Refer to: ', width=200)
+        error3.pack() 
+        error3_1 = tk.Label(master=outframe1,  text='https://developer.mapquest.com/documentation/directions-api/status-codes', width=200)
+        error3_1.pack()
+        outframe1.pack()
+           
     line = tk.Label(master=outframe2, text='======================================').pack()
     remarks = tk.Label(master=outframe2, text='Do you want to enter another route?').pack()
     b1 = tk.Button(master=outframe2, text='Yes', width=10,bg='Green',command= output_win.destroy).pack() # button added
     b2 = tk.Button(master=outframe2, text='No', width=10,command=lambda: quit(window)).pack() # button added
     outframe2.pack()
 
-    
+
 #Code for the Tkinter
 window = tk.Tk()
 window.title("MapQuest API")
