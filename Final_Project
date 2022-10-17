@@ -1,51 +1,79 @@
 import urllib.parse
 import requests
+import tkinter as tk
 
-main_api = "https://www.mapquestapi.com/directions/v2/route?"
 
-key = "FkKyOGoGjKTmJfAMaCArRuCL3f1PslfO"
 
-while True:
-    orig = input("Starting Location: ")
-    if orig == "quit" or orig == "q":
-        break
-    dest = input("Destination: ")
-    if dest == "quit" or dest == "q":
-        break
-    
-      
+def quit(self):
+    self.destroy()
+    exit()
+def output():
+    main_api = "https://www.mapquestapi.com/directions/v2/route?"
+    key = "FkKyOGoGjKTmJfAMaCArRuCL3f1PslfO"
+    output_win = tk.Tk()
+    output_win.title("MapQuest API")
+    output_win.geometry("800x800")
+
+    outframe1 = tk.Frame(master=output_win, width=300, height=300)
+    outframe2 = tk.Frame(master=output_win, width=300, height=300)
+
+    orig=in1.get("1.0","end-1c")
+    dest=in2.get("1.0","end-1c")
+
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
-    print("URL: " + (url))
     json_data = requests.get(url).json()
     json_status = json_data["info"]["statuscode"]
-    if json_status == 0:
-        print("API Status: " + str(json_status) + " = A successful route call.\n")
-        print("=============================================")
-        print("Directions from " + (orig) + " to " + (dest))
-        print("Trip Duration: " + (json_data["route"]["formattedTime"]))
-        print("Kilometers: " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
-        print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
-        print("=============================================")
-        for each in json_data["route"]["legs"][0]["maneuvers"]:
-            print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
-        print("=============================================\n")
-    elif json_status == 402:
-          print("**********************************************")
-          print("Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
-          print("**********************************************\n")
-    elif json_status == 611:
-          print("**********************************************")
-          print("Status Code: " + str(json_status) + "; Missing an entry for one or both locations.")
-          print("**********************************************\n")
-    else:
-          print("************************************************************************")
-          print("For Staus Code: " + str(json_status) + "; Refer to:")
-          print("https://developer.mapquest.com/documentation/directions-api/status-codes")
-          print("************************************************************************\n")
 
-    stay = input("Do you want to stay in the program? Yes/No: ")
-    if stay == "No" or stay == "no" or stay == "N" or stay == "n":
-        break
-    if stay == "Yes" or stay == "yes" or stay == "Y" or stay == "y":
-        json_data = requests.get(url).json()
-        json_status = json_data["info"]["statuscode"]  
+    if json_status == 0:
+        output1 = tk.Label(master=outframe1,  text='API Status: ' + str(json_status) + ' = A successful route call.', width=200)
+        output1.pack()
+        output2 = tk.Label(master=outframe1,  text='Directions from ' + (orig) + ' to ' + (dest), width=200)
+        output2.pack()
+        output3 = tk.Label(master=outframe1,  text='Trip Duration: ' + (json_data["route"]["formattedTime"]), width=200)
+        output3.pack()
+        output4 = tk.Label(master=outframe1,  text='Kilometers: ' + str("{:.2f}".format((json_data["route"]["distance"])*1.61)), width=200)
+        output4.pack()
+        for each in json_data["route"]["legs"][0]["maneuvers"]:
+            output5 = tk.Label(master=outframe1,  text=(each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"), width=200).pack()
+        outframe1.pack()
+    
+    line = tk.Label(master=outframe2, text='======================================').pack()
+    remarks = tk.Label(master=outframe2, text='Do you want to enter another route?').pack()
+    b1 = tk.Button(master=outframe2, text='Yes', width=10,bg='Green',command= output_win.destroy).pack() # button added
+    b2 = tk.Button(master=outframe2, text='No', width=10,command=lambda: quit(window)).pack() # button added
+    outframe2.pack()
+
+    
+#Code for the Tkinter
+window = tk.Tk()
+window.title("MapQuest API")
+window.geometry("400x200")
+
+#Frames of window
+frame1 = tk.Frame(master=window, width=300, height=300)
+frame2 = tk.Frame(master=window, width=300, height=300)
+frame3 = tk.Frame(master=window, width=300, height=300)
+frame4 = tk.Frame(master=window, width=300, height=300)
+
+l1 = tk.Label(master=frame1,  text='Starting Location', width=20).pack() # added one Label 
+l2 = tk.Label(master=frame3,  text='Destination', width=20 ).pack() # added one Label 
+
+in1 = tk.Text(master=frame2, height=2, width=30)
+in2 = tk.Text(master=frame4, height=2, width=30)
+in1.pack()
+in2.pack()
+
+
+
+b1 = tk.Button(master=frame4, text='Enter', width=10,bg='Green',command=lambda: output()).pack() # button added
+b2 = tk.Button(master=frame4, text='Close', width=10,command=lambda: quit(window)).pack() # button added
+
+
+frame1.pack()
+frame2.pack()
+frame3.pack()
+frame4.pack()
+
+window.mainloop()
+
+  
