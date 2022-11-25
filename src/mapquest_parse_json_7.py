@@ -5,15 +5,7 @@ main_api = "https://www.mapquestapi.com/directions/v2/route?"
 
 key = "FkKyOGoGjKTmJfAMaCArRuCL3f1PslfO"
 
-while True:
-    orig = input("Starting Location: ")
-    if orig == "quit" or orig == "q":
-        break
-    dest = input("Destination: ")
-    if dest == "quit" or dest == "q":
-        break
-        
-output(orig,dest)
+
 def output(orig,dest):  
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
     print("URL: " + (url))
@@ -47,3 +39,11 @@ def output(orig,dest):
           print("https://developer.mapquest.com/documentation/directions-api/status-codes")
           print("************************************************************************\n")
           return json_status
+while True:
+    orig = input("Starting Location: ")
+    if orig == "quit" or orig == "q":
+        break
+    dest = input("Destination: ")
+    if dest == "quit" or dest == "q":
+        break
+    output(orig,dest)
