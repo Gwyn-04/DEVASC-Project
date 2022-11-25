@@ -2,7 +2,7 @@ import pytest
 from Final_Project_src import output
 
 
-
-
 def test_output():
-    assert output("Baltimore, M.D","Washington, D.C") == 0
+    assert orig == "Baltimore, M.D"
+    assert dest == "Washington, D.C"
+    assert output() == 0
