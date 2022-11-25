@@ -1,10 +1,8 @@
 import pytest
-import Final_Project_src
+from Final_Project_src import output
 
 
 
 
 def test_output():
-    assert orig == Washington, D.C
-    assert dest == Baltimore, M.D
-    assert json_status == 0
+    assert output("Baltimore, M.D","Washington, D.C") == 0
