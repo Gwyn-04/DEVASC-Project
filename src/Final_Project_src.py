@@ -7,7 +7,7 @@ import tkinter as tk
 def quit(self):
     self.destroy()
     exit()
-def output(in1,in2):
+def output():
     main_api = "https://www.mapquestapi.com/directions/v2/route?"
     key = "FkKyOGoGjKTmJfAMaCArRuCL3f1PslfO"
     output_win = tk.Tk()
