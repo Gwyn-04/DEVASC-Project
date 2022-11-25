@@ -13,7 +13,7 @@ while True:
     if dest == "quit" or dest == "q":
         break
         
-    output(orig,dest)
+output(orig,dest)
 def output(orig,dest):  
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
     print("URL: " + (url))
