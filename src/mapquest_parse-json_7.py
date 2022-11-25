@@ -12,7 +12,8 @@ while True:
     dest = input("Destination: ")
     if dest == "quit" or dest == "q":
         break
-    
+    output(orig,dest)
+def output(orig,dest):  
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
     print("URL: " + (url))
     json_data = requests.get(url).json()
@@ -28,16 +29,20 @@ while True:
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
         print("=============================================\n")
+        return json_status
     elif json_status == 402:
           print("**********************************************")
           print("Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
           print("**********************************************\n")
+          return json_status
     elif json_status == 611:
           print("**********************************************")
           print("Status Code: " + str(json_status) + "; Missing an entry for one or both locations.")
           print("**********************************************\n")
+          return json_status
     else:
           print("************************************************************************")
           print("For Staus Code: " + str(json_status) + "; Refer to:")
           print("https://developer.mapquest.com/documentation/directions-api/status-codes")
           print("************************************************************************\n")
+          return json_status
