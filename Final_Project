@@ -12,10 +12,10 @@ def output():
     key = "FkKyOGoGjKTmJfAMaCArRuCL3f1PslfO"
     output_win = tk.Tk()
     output_win.title("MapQuest API")
-    output_win.geometry("800x800")
+    output_win.geometry("600x600")
 
-    outframe1 = tk.Frame(master=output_win, width=300, height=300)
-    outframe2 = tk.Frame(master=output_win, width=300, height=300)
+    outframe1 = tk.Frame(master=output_win, width=500, height=500)
+    outframe2 = tk.Frame(master=output_win, width=500, height=500)
 
     orig=in1.get("1.0","end-1c")
     dest=in2.get("1.0","end-1c")
@@ -33,8 +33,10 @@ def output():
         output3.pack()
         output4 = tk.Label(master=outframe1,  text='Kilometers: ' + str("{:.2f}".format((json_data["route"]["distance"])*1.61)), width=200)
         output4.pack()
+        output5 = tk.Label(master=outframe1,  text='Route Type: ' + (json_data["routeType"]), width=200)
+        output5.pack()
         for each in json_data["route"]["legs"][0]["maneuvers"]:
-            output5 = tk.Label(master=outframe1,  text=(each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"), width=200).pack()
+            output6 = tk.Label(master=outframe2,  text=(each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"), width=200).pack()
         outframe1.pack()
     elif json_status == 402:
         error1 = tk.Label(master=outframe1,  text='API Status: ' + str(json_status) + '; Invalid user inputs for one or both locations.', width=200)
@@ -61,13 +63,13 @@ def output():
 #Code for the Tkinter
 window = tk.Tk()
 window.title("MapQuest API")
-window.geometry("400x200")
+window.geometry("600x200")
 
 #Frames of window
-frame1 = tk.Frame(master=window, width=300, height=300)
-frame2 = tk.Frame(master=window, width=300, height=300)
-frame3 = tk.Frame(master=window, width=300, height=300)
-frame4 = tk.Frame(master=window, width=300, height=300)
+frame1 = tk.Frame(master=window, width=500, height=500)
+frame2 = tk.Frame(master=window, width=500, height=500)
+frame3 = tk.Frame(master=window, width=500, height=500)
+frame4 = tk.Frame(master=window, width=500, height=500)
 
 l1 = tk.Label(master=frame1,  text='Starting Location', width=20).pack() # added one Label 
 l2 = tk.Label(master=frame3,  text='Destination', width=20 ).pack() # added one Label 
@@ -89,5 +91,3 @@ frame3.pack()
 frame4.pack()
 
 window.mainloop()
-
-  
