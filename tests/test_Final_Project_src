@@ -1,7 +1,7 @@
 import pytest
-import Final_Project_src
+from Final_Project_src import output
 
 
-def output():
-    assert json_status == 0
+def test_output():
+    assert output() == 0
 
