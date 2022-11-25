@@ -60,8 +60,8 @@ def output():
            
     line = tk.Label(master=outframe2, text='======================================').pack()
     remarks = tk.Label(master=outframe2, text='Do you want to enter another route?').pack()
-    b1 = tk.Button(master=outframe2, text='Yes', width=15,bg='Green',command= output_win.destroy).pack() # button added
-    b2 = tk.Button(master=outframe2, text='No', width=15,command=lambda: quit(window)).pack() # button added
+    b1 = tk.Button(master=outframe2, text='Yes', width=10,bg='Green',command= output_win.destroy).pack() # button added
+    b2 = tk.Button(master=outframe2, text='No', width=10,command=lambda: quit(window)).pack() # button added
     output6 = tk.Label(master=outframe2,  text=(json_data['info']['copyright']['text']), width=200)
     output6.pack()
     outframe2.pack()
@@ -89,8 +89,8 @@ in2.pack()
 
 
 
-b1 = tk.Button(master=frame4, text='Enter', width=10,bg='Green',command=lambda: output(in1,in2)).pack() # button added
-b2 = tk.Button(master=frame4, text='Close', width=10,command=lambda: quit(window)).pack() # button added
+b1 = tk.Button(master=frame4, text='Enter', width=15,bg='Green',command=lambda: output()).pack() # button added
+b2 = tk.Button(master=frame4, text='Close', width=15,command=lambda: quit(window)).pack() # button added
 
 
 frame1.pack()
