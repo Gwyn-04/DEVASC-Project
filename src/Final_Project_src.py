@@ -60,8 +60,8 @@ def output():
            
     line = tk.Label(master=outframe2, text='======================================').pack()
     remarks = tk.Label(master=outframe2, text='Do you want to enter another route?').pack()
-    b1 = tk.Button(master=outframe2, text='Yes', width=10,bg='Green',command= output_win.destroy).pack() # button added
-    b2 = tk.Button(master=outframe2, text='No', width=10,command=lambda: quit(window)).pack() # button added
+    b1 = tk.Button(master=outframe2, text='Yes', width=15,bg='Green',command= output_win.destroy).pack() # button added
+    b2 = tk.Button(master=outframe2, text='No', width=15,command=lambda: quit(window)).pack() # button added
     output6 = tk.Label(master=outframe2,  text=(json_data['info']['copyright']['text']), width=200)
     output6.pack()
     outframe2.pack()
@@ -71,7 +71,7 @@ def output():
 #Code for the Tkinter
 window = tk.Tk()
 window.title("MapQuest API")
-window.geometry("600x200")
+window.geometry("400x200")
 
 #Frames of window
 frame1 = tk.Frame(master=window, width=500, height=500)
