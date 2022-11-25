@@ -39,24 +39,24 @@ def output():
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             output6 = tk.Label(master=outframe1,  text=(each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"), width=200).pack()
         outframe1.pack()
-        return json_status
+        
     elif json_status == 402:
         error1 = tk.Label(master=outframe1,  text='API Status: ' + str(json_status) + '; Invalid user inputs for one or both locations.', width=200)
         error1.pack()
         outframe1.pack()
-        return json_status
+        
     elif json_status == 611:
         error2 = tk.Label(master=outframe1,  text='API Status: ' + str(json_status) + '; Missing an entry for one or both locations.', width=200)
         error2.pack()
         outframe1.pack()
-        return json_status
+        
     else:
         error3 = tk.Label(master=outframe1,  text='For status code: ' + str(json_status) + '; Refer to: ', width=200)
         error3.pack() 
         error3_1 = tk.Label(master=outframe1,  text='https://developer.mapquest.com/documentation/directions-api/status-codes', width=200)
         error3_1.pack()
         outframe1.pack()
-        return json_status
+        
            
     line = tk.Label(master=outframe2, text='======================================').pack()
     remarks = tk.Label(master=outframe2, text='Do you want to enter another route?').pack()
@@ -71,7 +71,7 @@ def output():
 #Code for the Tkinter
 window = tk.Tk()
 window.title("MapQuest API")
-window.geometry("600x200")
+window.geometry("400x200")
 
 #Frames of window
 frame1 = tk.Frame(master=window, width=500, height=500)
@@ -89,8 +89,8 @@ in2.pack()
 
 
 
-b1 = tk.Button(master=frame4, text='Enter', width=10,bg='Green',command=lambda: output(in1,in2)).pack() # button added
-b2 = tk.Button(master=frame4, text='Close', width=10,command=lambda: quit(window)).pack() # button added
+b1 = tk.Button(master=frame4, text='Enter', width=15,bg='Green',command=lambda: output()).pack() # button added
+b2 = tk.Button(master=frame4, text='Close', width=15,command=lambda: quit(window)).pack() # button added
 
 
 frame1.pack()
