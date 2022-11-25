@@ -12,6 +12,7 @@ while True:
     dest = input("Destination: ")
     if dest == "quit" or dest == "q":
         break
+        
     output(orig,dest)
 def output(orig,dest):  
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
