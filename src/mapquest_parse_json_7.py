@@ -6,7 +6,7 @@ main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "FkKyOGoGjKTmJfAMaCArRuCL3f1PslfO"
 
 
-def output(orig,dest):  
+def outprint(orig,dest):  
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
     print("URL: " + (url))
     json_data = requests.get(url).json()
@@ -46,4 +46,4 @@ while True:
     dest = input("Destination: ")
     if dest == "quit" or dest == "q":
         break
-    output(orig,dest)
+    outprint(orig,dest)
