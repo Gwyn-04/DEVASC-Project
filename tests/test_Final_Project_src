@@ -1,8 +1,10 @@
 import pytest
-from Final_Project_src import output
+from Final_Project_src import *
 
+def test_all():
+    window.mainloop()
 
 def test_output():
-    assert orig == "Baltimore, M.D"
-    assert dest == "Washington, D.C"
+    assert Final_Project_src.in1 == 'Washington, D.C'
+    assert Final_Project_src.in2 == 'Baltimore, M.D'
     assert output() == 0
