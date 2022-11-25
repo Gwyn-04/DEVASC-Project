@@ -1,4 +1,2 @@
-python-tk
-tkinter
 pytest
 requests
