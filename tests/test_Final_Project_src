@@ -3,7 +3,7 @@ from Final_Project_src import output
 
 
 def test_output():
-    assert in1 = Washington, D.C
-    assert in2 = Baltimore, M.D
+    assert in1 == Washington, D.C
+    assert in2 == Baltimore, M.D
     assert output() == 0
 
